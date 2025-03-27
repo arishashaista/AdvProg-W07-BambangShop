@@ -64,11 +64,11 @@ You can install Postman via this website: https://www.postman.com/downloads/
     -   [x] Commit: `Implement unsubscribe function in Notification controller.`
     -   [x] Write answers of your learning module's "Reflection Publisher-2" questions in this README.
 -   **STAGE 3: Implement notification mechanism**
-    -   [ ] Commit: `Implement update method in Subscriber model to send notification HTTP requests.`
-    -   [ ] Commit: `Implement notify function in Notification service to notify each Subscriber.`
-    -   [ ] Commit: `Implement publish function in Program service and Program controller.`
-    -   [ ] Commit: `Edit Product service methods to call notify after create/delete.`
-    -   [ ] Write answers of your learning module's "Reflection Publisher-3" questions in this README.
+    -   [x] Commit: `Implement update method in Subscriber model to send notification HTTP requests.`
+    -   [x] Commit: `Implement notify function in Notification service to notify each Subscriber.`
+    -   [x] Commit: `Implement publish function in Program service and Program controller.`
+    -   [x] Commit: `Edit Product service methods to call notify after create/delete.`
+    -   [x] Write answers of your learning module's "Reflection Publisher-3" questions in this README.
 
 ## Your Reflections
 This is the place for you to write reflections:
@@ -90,3 +90,12 @@ This is the place for you to write reflections:
 3. Dengan menggunakan Postman, saya dapat mengirim permintaan HTTP (GET, POST, PUT, DELETE) ke aplikasi dan menganalisis responsnya. Postman membantu untuk memverifikasi apakah endpoint-endpoint dalam aplikasi BambangShop berfungsi sesuai yang diharapkan. Dengan kemampuan Postman untuk mempermudah proses pengujian menjadikannya alat yang sangat penting untuk proyek grup dan pekerjaan rekayasa perangkat lunak yang akan saya lakukan karena memastikan bahwa API terverifikasi dengan baik pada setiap tahap pengembangan.
 
 #### Reflection Publisher-3
+1. Pada kode ini, digunakan Push model. Publisher yang akan mengirimkan data ke Subscriber ketika ada perubahan atau event baru, seperti ketika sebuah produk dibuat atau dihapus. Ketika event ini terjadi, Publisher mengirimkan informasi tersebut melalui HTTP POST ke URL yang diberikan oleh Subscriber, yang berisi data terkait produk tersebut.
+
+2. Keuntungan menggunakan Pull model adalah Subscriber memiliki kontrol penuh atas kapan mereka pull data dari Publisher. Hal ini berguna jika Subscriber ingin mengontrol frekuensi atau waktu pemanggilan data, menghindari beban dari pengiriman data yang tidak diperlukan Selain itu, Publisher tidak perlu terus menerus mengirimkan data ke banyak Subscriber. Sebaliknya, Subscriber yang akan mengambil data ketika mereka membutuhkannya.
+
+Namun, Pull model memiliki kerugian seperti Subscriber harus mengatur dan mengelola polling atau permintaan berkala untuk menarik data dari Publisher, yang bisa meningkatkan kompleksitas dan menyebabkan keterlambatan. Subscriber mungkin tidak mendapatkan data terbaru sampai mereka melakukan permintaan baru, yang dapat mengakibatkan data yang tertinggal jika tidak ada mekanisme pembaruan yang baik.
+
+3. Jika tidak menggunakan multi-threading dalam proses notification, maka proses pengiriman pemberitahuan ke semua Subscriber akan berjalan secara sinkron. Artinya, aplikasi akan mengirim pemberitahuan ke setiap Subscriber satu per satu, dan aplikasi akan menunggu hingga pemberitahuan ke Subscriber pertama selesai sebelum melanjutkan ke Subscriber berikutnya. Dengan ini, jika terdapat banyak Subscriber, aplikasi akan menjadi lebih lambat karena harus menunggu setiap permintaan HTTP selesai secara berurutan. Hal ini dapat mempengaruhi kinerja dan waktu respons aplikasi secara keseluruhan. Selain itu, aplikasi menjadi tidak efisien ketika jumlah Subscriber meningkat, karena hanya satu thread yang akan menangani pemberitahuan ke seluruh Subscriber, yang dapat menyebabkan bottleneck. Dengan menggunakan multi-threading,  dapat dikirim pemberitahuan ke banyak Subscriber secara paralel, yang mempercepat proses dan membuat aplikasi lebih responsif.
+
+
