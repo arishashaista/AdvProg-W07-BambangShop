@@ -57,12 +57,12 @@ You can install Postman via this website: https://www.postman.com/downloads/
     -   [x] Commit: `Implement delete function in Subscriber repository.`
     -   [x] Write answers of your learning module's "Reflection Publisher-1" questions in this README.
 -   **STAGE 2: Implement services and controllers**
-    -   [ ] Commit: `Create Notification service struct skeleton.`
-    -   [ ] Commit: `Implement subscribe function in Notification service.`
-    -   [ ] Commit: `Implement subscribe function in Notification controller.`
-    -   [ ] Commit: `Implement unsubscribe function in Notification service.`
-    -   [ ] Commit: `Implement unsubscribe function in Notification controller.`
-    -   [ ] Write answers of your learning module's "Reflection Publisher-2" questions in this README.
+    -   [x] Commit: `Create Notification service struct skeleton.`
+    -   [x] Commit: `Implement subscribe function in Notification service.`
+    -   [x] Commit: `Implement subscribe function in Notification controller.`
+    -   [x] Commit: `Implement unsubscribe function in Notification service.`
+    -   [x] Commit: `Implement unsubscribe function in Notification controller.`
+    -   [x] Write answers of your learning module's "Reflection Publisher-2" questions in this README.
 -   **STAGE 3: Implement notification mechanism**
     -   [ ] Commit: `Implement update method in Subscriber model to send notification HTTP requests.`
     -   [ ] Commit: `Implement notify function in Notification service to notify each Subscriber.`
@@ -83,5 +83,10 @@ This is the place for you to write reflections:
 3. Menggunakan DashMap dalam kasus ini sudah tepat karena diperlukan thread-safety untuk menangani akses bersamaan ke daftar Subscriber. DashMap memungkinkan untuk menambahkan, menghapus, dan mencari Subscriber secara aman pada multi-threading. Pola Singleton dapat digunakan jika hanya membutuhkan satu instance dari daftar Subscriber, tetapi DashMap sudah menyediakan fungsionalitas yang dibutuhkan tanpa harus menambah kompleksitas lebih lanjut. Jadi, meskipun Singleton bisa digunakan, DashMap lebih sesuai karena menyediakan fungsionalitas yang lebih fleksibel dan aman untuk kasus ini.
 
 #### Reflection Publisher-2
+1. Dalam pola MVC, Model biasanya menangani penyimpanan data dan logika bisnis. Namun, memisahkan tanggung jawab ke dalam komponen yang berbeda, yaitu Service dan Repository, dapat meningkatkan pemeliharaan dan skalabilitas kode. Repository bertanggung jawab untuk berinteraksi dengan penyimpanan data, yang memberikan lapisan abstraksi untuk operasi data. Service menangani logika bisnis, seperti memproses atau memanipulasi data sebelum dikirim ke view atau setelah diterima dari repository. Pemisahan ini mengikuti prinsip Single Responsibility Principle (SRP), yang memastikan bahwa setiap komponen memiliki tanggung jawab yang jelas dan terpisah. Selain itu, pemisahan ini memudahkan pengujian, karena Service dan Repository dapat diuji secara terpisah.
+
+2. Jika hanya menggunakan Model tanpa memisahkan ke dalam Service dan Repository, kompleksitas kode akan meningkat. Model akan menjadi tanggung jawab untuk mengelola data dan logika bisnis, yang membuat lebih sulit untuk dipelihara dan di-*test*. Sebagai contoh, dalam model Program, Subscriber, dan Notification, akan ditempatkan logika untuk menyimpan data, memproses aturan bisnis, dan mengelola hubungan antara model dalam satu file. Hal ini akan membuat kode menjadi lebih kompleks dan sulit untuk dimodifikasi, karena perubahan pada satu bagian model dapat memengaruhi bagian lainnya. Selain itu, hal ini juga akan sulit untuk diskalakan seiring bertambahnya proyek, dan berbagai bagian kode menjadi sangat bergantung satu sama lain. 
+
+3. Dengan menggunakan Postman, saya dapat mengirim permintaan HTTP (GET, POST, PUT, DELETE) ke aplikasi dan menganalisis responsnya. Postman membantu untuk memverifikasi apakah endpoint-endpoint dalam aplikasi BambangShop berfungsi sesuai yang diharapkan. Dengan kemampuan Postman untuk mempermudah proses pengujian menjadikannya alat yang sangat penting untuk proyek grup dan pekerjaan rekayasa perangkat lunak yang akan saya lakukan karena memastikan bahwa API terverifikasi dengan baik pada setiap tahap pengembangan.
 
 #### Reflection Publisher-3
