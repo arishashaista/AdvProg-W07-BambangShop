@@ -48,15 +48,15 @@ You can install Postman via this website: https://www.postman.com/downloads/
     (You might want to use `cargo check` if you only need to verify your work without running the app.)
 
 ## Mandatory Checklists (Publisher)
--   [ ] Clone https://gitlab.com/ichlaffterlalu/bambangshop to a new repository.
+-   [x] Clone https://gitlab.com/ichlaffterlalu/bambangshop to a new repository.
 -   **STAGE 1: Implement models and repositories**
-    -   [ ] Commit: `Create Subscriber model struct.`
-    -   [ ] Commit: `Create Notification model struct.`
-    -   [ ] Commit: `Create Subscriber database and Subscriber repository struct skeleton.`
-    -   [ ] Commit: `Implement add function in Subscriber repository.`
-    -   [ ] Commit: `Implement list_all function in Subscriber repository.`
-    -   [ ] Commit: `Implement delete function in Subscriber repository.`
-    -   [ ] Write answers of your learning module's "Reflection Publisher-1" questions in this README.
+    -   [x] Commit: `Create Subscriber model struct.`
+    -   [x] Commit: `Create Notification model struct.`
+    -   [x] Commit: `Create Subscriber database and Subscriber repository struct skeleton.`
+    -   [x] Commit: `Implement add function in Subscriber repository.`
+    -   [x] Commit: `Implement list_all function in Subscriber repository.`
+    -   [x] Commit: `Implement delete function in Subscriber repository.`
+    -   [x] Write answers of your learning module's "Reflection Publisher-1" questions in this README.
 -   **STAGE 2: Implement services and controllers**
     -   [ ] Commit: `Create Notification service struct skeleton.`
     -   [ ] Commit: `Implement subscribe function in Notification service.`
@@ -77,6 +77,11 @@ This is the place for you to write reflections:
 ### Mandatory (Publisher) Reflections
 
 #### Reflection Publisher-1
+1. Pada kasus BambangShop, saat ini tidak perlu mendefinisikan *interface* atau *trait* untuk Subscriber. Karena Subscriber hanya memiliki dua atribut (URL dan nama) yang perlu disimpan, sehingga cukup menggunakan *struct* sebagai model data. Trait lebih cocok digunakan ketika ada beberapa perilaku atau metode yang perlu diimplementasikan oleh berbagai tipe data, namun dalam hal ini Subscriber hanya berfungsi sebagai representasi data, sehingga cukup dengan *struct* saja.
+
+2. Dalam kasus ini, menggunakan DashMap lebih tepat dibandingkan Vec. Meskipun Vec dapat digunakan untuk menyimpan daftar Subscriber, tetapi dengan DashMap dapat mengakses dan memanipulasi data Subscriber lebih efisien dengan kunci yang unik, seperti url dan id. DashMap menyediakan pencarian yang lebih cepat dan aman dalam hal konkuren (thread-safe), yang sangat berguna jika ingin mengelola banyak Subscriber dengan cara yang lebih efisien dan aman.
+
+3. Menggunakan DashMap dalam kasus ini sudah tepat karena diperlukan thread-safety untuk menangani akses bersamaan ke daftar Subscriber. DashMap memungkinkan untuk menambahkan, menghapus, dan mencari Subscriber secara aman pada multi-threading. Pola Singleton dapat digunakan jika hanya membutuhkan satu instance dari daftar Subscriber, tetapi DashMap sudah menyediakan fungsionalitas yang dibutuhkan tanpa harus menambah kompleksitas lebih lanjut. Jadi, meskipun Singleton bisa digunakan, DashMap lebih sesuai karena menyediakan fungsionalitas yang lebih fleksibel dan aman untuk kasus ini.
 
 #### Reflection Publisher-2
 
